@@ -73,7 +73,7 @@ class Custom_Woo_Discount_Plugin {
 
     private function ajax_validation($data){
         $success    = true;
-        $result     = '';
+        $result     = [];
         
         if(empty($data['discount_cat']) || !term_exists((int)$data['discount_cat'], 'product_cat')){
 
@@ -90,7 +90,7 @@ class Custom_Woo_Discount_Plugin {
         if(empty($data['discount_cat_free']) || !term_exists((int)$data['discount_cat_free'], 'product_cat')){
 
             $success = false;
-            $result['error'] = 'Discount free category incorrect';
+            $result['error'] = 'Free products category incorrect';
         }
 
         if(!$success){
