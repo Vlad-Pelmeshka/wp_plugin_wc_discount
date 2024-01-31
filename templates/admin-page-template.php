@@ -1,67 +1,39 @@
 <!-- templates/admin-page-template.php -->
-<div id="text-managment-section">
-    <h1>Text Management12</h1>
-    <form id="text-manage-form">
-        <label for="search-text">Enter Search Text:</label>
-        <input type="text" id="search-text" name="search_text" placeholder="keyword...">
-        <input type="submit" value="Search">
+<div id="woo-discount-managment-section">
+    <h1><?php echo $data['title']; ?></h1>
+    <form id="woo-discount-managment-form">
+
+        <div class="woo-discount-line">
+            <label for="search-cat">Discount category</label>
+            <select name="search_cat" id="search-cat">
+                <?php foreach($data['category'] as $cat_key => $category): ?>
+                    <option value="<?php echo $cat_key; ?>">
+                        <?php echo $category; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        
+        <div class="woo-discount-line">
+            <label for="search-count">Number of products from this category</label>
+            <input required type="number" name="search_count" id="search-count" value="1" min="1" max="999">
+        </div>
+        
+        <div class="woo-discount-line">
+            <label for="search-cat-free">Free products category</label>
+            <select name="search_cat_free" id="search-cat-free">
+                <?php foreach($data['category'] as $cat_key => $category): ?>
+                    <option value="<?php echo $cat_key; ?>">
+                        <?php echo $category; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="woo-discount-line-submit">
+            <input type="submit" value="Save">
+        </div>
     </form>
 
-    <div id="text-manage-results">
-        <div id="search-info" hidden>Results for <span id="search-info-text"></span><span id="search-nothing" hidden> - no matches found</span></div>
-        <div class="results-table">
-            <div class="result-column" id="title-column">
-
-                <div class="result-column-header">
-                    <h2>Title</h2>
-                    <form class="text-manage-form-column" form-type="title" id="text-manage-form-title">
-                        <input type="text" id="replace-text-title" name="replace_text"  placeholder="new keyword...">
-                        <input type="submit" value="Replace" disabled>
-                    </form>
-                </div>
-
-                <div class="result-column-items" id="title-results"></div>
-            </div> <!-- #title-column -->
-
-            <div class="result-column" id="content-column">
-
-                <div class="result-column-header">
-                    <h2>Content</h2>
-                    <form class="text-manage-form-column" form-type="content" id="text-manage-form-content">
-                        <input type="text" id="replace-text-content" name="replace_text"  placeholder="new keyword...">
-                        <input type="submit" value="Replace" disabled>
-                    </form>
-                </div>
-
-                <div class="result-column-items" id="content-results"></div>
-            </div> <!-- #content-column -->
-
-            <div class="result-column" id="meta-title-column">
-
-                <div class="result-column-header">
-                    <h2>Meta Title</h2>
-                    <form class="text-manage-form-column" form-type="meta-title" id="text-manage-form-meta-title">
-                        <input type="text" id="replace-text-meta-title" name="replace_text"  placeholder="new keyword...">
-                        <input type="submit" value="Replace" disabled>
-                    </form>
-                </div>
-
-                <div class="result-column-items" id="meta-title-results"></div>
-            </div> <!-- #meta-title-column -->
-
-            <div class="result-column" id="meta-description-column">
-
-                <div class="result-column-header">
-                    <h2>Meta Description</h2>
-                    <form class="text-manage-form-column" form-type="meta-description" id="text-manage-form-meta-description">
-                        <input type="text" id="replace-text-meta-description" name="replace_text"  placeholder="new keyword...">
-                        <input type="submit" value="Replace" disabled>
-                    </form>
-                </div>
-                
-                <div class="result-column-items" id="meta-description-results"></div>
-            </div> <!-- #meta-description-column -->
-
-        </div>
-    </div>
+    
 </div>

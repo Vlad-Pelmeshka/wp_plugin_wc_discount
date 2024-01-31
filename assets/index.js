@@ -3,24 +3,29 @@ import './scss/style.scss';
 
 jQuery(document).ready(function ($) {
 
-    $('#text-manage-form').on('submit', function (event) {
+    $('#woo-discount-managment-form').on('submit', function (event) {
         event.preventDefault();
-        var searchText = $('#search-text').val();
 
-        sendAjaxRequest(searchText);
+        let data = {
+            'discount_cat':       $('#search-cat').val(),
+            'discount_count':     $('#search-count').val(),
+            'discount_cat_free':  $('#search-cat-free').val(),
+        };
+
+        sendAjaxRequestWooDiscount(data);
     });
 
-    function sendAjaxRequest(searchText) {
+    function sendAjaxRequestWooDiscount(data) {
         $.ajax({
             type: 'POST',
             url: ajaxurl,
             data: {
-                action: 'text_manage_search',
-                search_text: searchText,
+                action: 'custom_woo_discount',
+                data: data,
             },
             success: function (response) {
                 
-                $('.result-column-items').empty();
+                /*$('.result-column-items').empty();
     
                 addResultsToColumn(response.title, '#title-results', '#text-manage-form-title');
                 addResultsToColumn(response.content, '#content-results', '#text-manage-form-content');
@@ -30,7 +35,7 @@ jQuery(document).ready(function ($) {
                 $('#search-nothing').toggle(!response.title.length && !response.content.length && !response.meta_title.length && !response.meta_description.length);
                 
                 $('#search-info').show();
-                $('#search-info-text').text(searchText);
+                $('#search-info-text').text(searchText);*/
             },
             error: function (error) {
                 console.log(error);
