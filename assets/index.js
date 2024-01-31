@@ -24,7 +24,7 @@ jQuery(document).ready(function ($) {
                 data: data,
             },
             success: function (response) {
-                if(response.success == 'success'){
+                if(response.success == true){
                     var successNotice = '<div class="notice notice-success is-dismissible"><p>' + response.data.success + '</p></div>';
 
                     $('#woo-discount-managment-section').prepend(successNotice);
