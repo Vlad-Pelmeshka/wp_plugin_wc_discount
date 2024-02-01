@@ -25,16 +25,16 @@ function sendAjaxRequestWooDiscount(data) {
             action: 'custom_woo_discount',
             data: data,
         },
-        success: function (response) {
+        success: function (response) { 
             if(response.success == true){
                 var successNotice = '<div class="notice notice-success is-dismissible"><p>' + response.data.success + '</p></div>';
 
-                $('#woo-discount-managment-section').prepend(successNotice);
+                jQuery('#woo-discount-managment-section').prepend(successNotice);
             }
             else{
                 var errorNotice = '<div class="notice notice-error is-dismissible"><p>' + response.data.error + '</p></div>';
 
-                $('#woo-discount-managment-section').prepend(errorNotice);
+                jQuery('#woo-discount-managment-section').prepend(errorNotice);
             }
 
         },

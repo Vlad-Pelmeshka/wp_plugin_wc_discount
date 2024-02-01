@@ -27,16 +27,6 @@ class Custom_Woo_Discount_Plugin {
         add_action('woocommerce_before_calculate_totals',   array($this, 'set_price_to_zero_for_free_products'));
     }
 
-    function set_price_to_zero_for_free_products($cart) {
-        foreach ($cart->get_cart() as $cart_item) {
-            // var_dump($cart_item);
-            if (isset($cart_item['free_custom']) && $cart_item['free_custom'] === true) {
-                $cart_item['data']->set_price(0);
-            }
-        }
-    }
-
-
     public function add_admin_menu() {
 
         add_menu_page(
@@ -106,8 +96,6 @@ class Custom_Woo_Discount_Plugin {
 
             $cart_item_key = WC()->cart->add_to_cart($product_id, 1, 0, [],['free_custom'=>true]);
             
-            
-
             wp_send_json_success(['success' => 'Data success updated']);
             wp_die();
             
@@ -136,23 +124,45 @@ class Custom_Woo_Discount_Plugin {
             if($free_products):
             ?>
             <tr>
-                    <td></td>
-                    <td>Product Free</td>
-                    <td>
-                        <select name="woo_free_discount_product" id="woo-free-discount-product">
-                            <?php foreach($free_products as $product_key => $free_product): ?>
-                                <option value="<?php echo $product_key; ?>"><?php echo $free_product; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </td>
-                    <td>
-                        <button id="add_product_free">Add</button>
-                    </td>
-                </tr>
+                <td></td>
+                <td>Product Free</td>
+                <td>
+                    <select name="woo_free_discount_product" id="woo-free-discount-product">
+                        <?php foreach($free_products as $product_key => $free_product): ?>
+                            <option value="<?php echo $product_key; ?>"><?php echo $free_product; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+                <td>
+                    <button id="add_product_free">Add</button>
+                </td>
+            </tr>
             <?php
             endif;
         endif;
-        
+    }
+
+    public function set_price_to_zero_for_free_products($cart) {
+        $custom_woo_discount = get_option('custom_woo_discount');
+
+        if(!$custom_woo_discount)
+            return;
+
+        $data = json_decode($custom_woo_discount, true);
+
+        $products_count = self::get_cart_product_count_by_category($data['discount_cat']);
+
+        foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
+            if (isset($cart_item['free_custom']) && $cart_item['free_custom'] === true) {
+                
+                if($products_count >= $data['discount_count']){
+                    $cart_item['data']->set_price(0);
+                }else{
+                    $cart->remove_cart_item($cart_item_key);
+                }
+
+            }
+        }
     }
 
     private function is_free_product_in_cart(){
