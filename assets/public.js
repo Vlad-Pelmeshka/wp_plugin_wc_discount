@@ -10,14 +10,14 @@ jQuery(document).ready(function ($) {
     });
 });
 
-function AddProductFreeButton(){
+function AddProductFreeButton() {
     jQuery('#add_product_free').on('click', function (event) {
         event.preventDefault();
 
         jQuery('#add_product_free').attr("disabled", true);
 
         let free_product = jQuery('#woo-free-discount-product').val();
-        
+
         sendAjaxRequestWooDiscount(free_product);
     });
 }

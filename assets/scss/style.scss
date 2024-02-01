@@ -1,28 +1,28 @@
-#woo-discount-managment-section{
+#woo-discount-managment-section {
 
 	margin-right: 10px;
 
-	#woo-discount-managment-form{
+	#woo-discount-managment-form {
 		display: inline-grid;
 	}
 
-	.woo-discount{
+	.woo-discount {
 
-		&-line{
+		&-line {
 			display: inline-grid;
 
-			label{
+			label {
 				margin: 15px 0 5px;
 			}
 
-			&-submit{
+			&-submit {
 				margin-top: 20px;
 			}
 		}
 	}
 
 
-	input[type="submit"]{
+	input[type="submit"] {
 		cursor: pointer;
 		padding: 2px 30px;
 	}
