@@ -126,10 +126,9 @@ class Custom_Woo_Discount_Plugin
             if (self::is_free_product_in_cart())
                 return;
 
-            $free_products = self::get_products_by_category($data['discount_cat_free']);
+            $free_products = self::get_products_by_category($data['discount_cat_free']); ?>
 
-            if ($free_products) :
-?>
+            <?php if ($free_products) : ?>
                 <tr>
                     <td></td>
                     <td>Product Free</td>
@@ -144,8 +143,7 @@ class Custom_Woo_Discount_Plugin
                         <button id="add_product_free">Add</button>
                     </td>
                 </tr>
-<?php
-            endif;
+            <?php endif;
         endif;
     }
 

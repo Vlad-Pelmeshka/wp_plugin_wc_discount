@@ -15,6 +15,7 @@ jQuery(document).ready(function ($) {
         };
 
         sendAjaxRequestWooDiscount(data);
+        $('#woo-discount-managment-section-notice').remove();
     });
 
 });
@@ -28,7 +29,6 @@ function sendAjaxRequestWooDiscount(data) {
             data: data,
         },
         success: function (response) {
-            jQuery('#woo-discount-managment-section-notice').remove();
             jQuery('#woo-discount-managment-submit-id').removeAttr('disabled');
             if (response.success == true) {
                 var successNotice = '<div id="woo-discount-managment-section-notice" class="notice notice-success is-dismissible"><p>' + response.data.success + '</p></div>';
