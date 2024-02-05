@@ -68,9 +68,9 @@ class Custom_Woo_Discount_Plugin
             'title'     => 'Custom Woo Discount',
             'category'  => self::get_product_cat_list(),
             'data'      => array(
-                'discount_cat'        => $options['discount_cat']       ?: get_option('default_product_cat'),
-                'discount_count'      => $options['discount_count']     ?: 1,
-                'discount_cat_free'   => $options['discount_cat_free']  ?: get_option('default_product_cat'),
+                'discount_cat'        => !empty($options['discount_cat'])       ? $options['discount_cat']      : get_option('default_product_cat'),
+                'discount_count'      => !empty($options['discount_count'])     ? $options['discount_count']    : 1,
+                'discount_cat_free'   => !empty($options['discount_cat_free'])  ? $options['discount_cat_free'] : get_option('default_product_cat'),
             )
         );
 

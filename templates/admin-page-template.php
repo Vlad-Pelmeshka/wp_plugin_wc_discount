@@ -31,7 +31,7 @@
         </div>
 
         <div class="woo-discount-line-submit">
-            <input type="submit" value="Save">
+            <input type="submit" id="woo-discount-managment-submit-id" value="Save">
         </div>
     </form>
 
